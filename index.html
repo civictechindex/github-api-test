@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Hack for LA on GitHub</title>
+
+        <script type="text/html" id="tmpl-repo">
+            <div class="repo card">
+                <div class="card-header">
+                    <h2 class="card-title name"></h2>
+                    <h6 class="card-subtitle text-muted updated">Updated <small></small></h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted"><strong>Language:</strong> <em class="lang"></em></p>
+                    <p class="card-text description"></p>
+                    <p class="card-text text-muted"><strong>Topics:</strong> <em class="topics"></em></p>
+                </div>
+                <div class="card-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="#" class="btn btn-primary btn-sm repo" target="_blank">View Repo</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" target="_blank" class="btn btn-sm btn-primary issues">Open Issues <span class="badge badge-light"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="display-3" style="padding-bottom: 10px; border-bottom: solid 2px #ededed; margin-bottom: 0.5em;">Hack for LA on GitHub</h1>
+
+            <div id="repos" class="card-deck">
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <script>
+            $(function() {
+                $.ajax("https://api.github.com/search/repositories?q=topic:hack-for-la&sort=updated&order=desc", {
+                    headers: {
+                        "Accept": "application/vnd.github.mercy-preview+json",
+                        "User-Agent": "HackForLA"
+                    },
+                }).done(function(data) {
+                    var repos_list = $("#repos");
+                    var repo_tmpl = $("#tmpl-repo");
+
+                    console.log("All data:")
+                    console.log(data);
+
+                    $.each(data.items, function (_, repo_data) {
+                        var repo_card = $(repo_tmpl.html());
+
+                        $(".name", repo_card).text(repo_data.name);
+                        $(".topics", repo_card).text(repo_data.topics.join(", "));
+                        $(".description", repo_card).text(repo_data.description);
+                        $(".lang", repo_card).text(repo_data.language);
+                        $("a.repo", repo_card).attr("href", repo_data.html_url);
+                        $("a.issues", repo_card).attr("href", repo_data.html_url + "/issues?q=is%3Aopen");
+                        $("a.issues .badge", repo_card).text(repo_data.open_issues);
+                        $(".updated small", repo_card).text(repo_data.updated_at);
+
+                        repos_list.append(repo_card);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
