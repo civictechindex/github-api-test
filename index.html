@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
         <title>Hack for LA on GitHub</title>
 
         <script type="text/html" id="tmpl-repo">
@@ -13,21 +14,13 @@
                     <h6 class="card-subtitle text-muted updated">Updated <small></small></h6>
                 </div>
                 <div class="card-body">
-                    <p class="card-text text-muted"><strong>Language:</strong> <em class="lang"></em></p>
                     <p class="card-text description"></p>
+                    <p class="card-text text-muted"><strong>Language:</strong> <em class="lang"></em></p>
                     <p class="card-text text-muted"><strong>Topics:</strong> <em class="topics"></em></p>
                 </div>
                 <div class="card-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="#" class="btn btn-primary btn-sm repo" target="_blank">View Repo</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#" target="_blank" class="btn btn-sm btn-primary issues">Open Issues <span class="badge badge-light"></span></a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="#" class="btn btn-primary repo" target="_blank">View Repo</a>
+                    <a href="#" target="_blank" class="btn btn-primary issues">View Open Issues <span class="badge badge-light"></span></a>
                 </div>
             </div>
         </script>
@@ -62,9 +55,9 @@
                         var repo_card = $(repo_tmpl.html());
 
                         $(".name", repo_card).text(repo_data.name);
-                        $(".topics", repo_card).text(repo_data.topics.join(", "));
                         $(".description", repo_card).text(repo_data.description);
                         $(".lang", repo_card).text(repo_data.language);
+                        $(".topics", repo_card).text(repo_data.topics.join(", "));
                         $("a.repo", repo_card).attr("href", repo_data.html_url);
                         $("a.issues", repo_card).attr("href", repo_data.html_url + "/issues?q=is%3Aopen");
                         $("a.issues .badge", repo_card).text(repo_data.open_issues);
