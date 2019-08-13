@@ -13,6 +13,8 @@
     $(function () {
         var repos_list = $(".repos");
         var repo_tmpl = $("#repo-tmpl");
+        var topic = $("#topic");
+        var search = $("#search");
 
         var handleResponse = function (data) {
             console.log(data);
@@ -27,6 +29,14 @@
                 $("a.repo", repo_card).attr("href", repo_data.html_url);
                 $("a.issues", repo_card).attr("href", repo_data.html_url + "/issues?q=is%3Aopen");
                 $("a.issues .badge", repo_card).text(repo_data.open_issues);
+
+                if (repo_data.homepage) {
+                    $("a.homepage", repo_card).attr("href", repo_data.homepage);
+                }
+                else {
+                    $("a.homepage", repo_card).remove();
+                }
+
                 $(".updated small", repo_card).text(repo_data.updated_at);
 
                 $.ajax(repo_data.languages_url, {
@@ -52,13 +62,20 @@
             });
         };
 
-        $("#search").click(function () {
-            var topic = $("#topic").val();
-            if (topic !== "") {
-                searchTopic(topic, handleResponse);
+        search.click(function () {
+            if (topic.val() !== "") {
+                searchTopic(topic.val(), handleResponse);
             }
         });
 
-        searchTopic("hack-for-la", handleResponse);
+        $("#hack-for-la").click(function() {
+            topic.val("hack-for-la");
+            search.click();
+        });
+
+        $("#code-for-america").click(function() {
+            topic.val("code-for-america");
+            search.click();
+        });
     });
 })(jQuery);
