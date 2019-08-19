@@ -73,6 +73,11 @@
             search.click();
         });
 
+        $("#open-oakland").click(function() {
+            topic.val("open-oakland");
+            search.click();
+        });
+        
         $("#code-for-america").click(function() {
             topic.val("code-for-america");
             search.click();
