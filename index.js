@@ -77,6 +77,11 @@
             topic.val("open-oakland");
             search.click();
         });
+
+        $("#code-for-sf").click(function() {
+            topic.val("code-for-sf");
+            search.click();
+        });
         
         $("#code-for-america").click(function() {
             topic.val("code-for-america");

@@ -34,8 +34,16 @@
                     <label class="mr-2">Topic:</label>
                     <input type="text" id="topic" class="form-control mr-2" placeholder="e.g. hack-for-la">
                     <button type="button" id="search" class="btn btn-success mr-2">Search</button>
-                    <button type="button" id="hack-for-la" class="btn btn-danger mr-2">hack-for-la</button>
-                    <button type="button" id="open-oakland" class="btn btn-danger mr-2">open-oakland</button>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Brigades
+                        </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="code-for-sf" class="btn btn-info mr-2">code-for-sf</a>
+                            <a class="dropdown-item" id="hack-for-la" class="btn btn-info mr-2">hack-for-la - 19 listings</a>
+                            <a class="dropdown-item" id="open-oakland" class="btn btn-info mr-2">open-oakland</a>
+                            </div>
+                    </div>
                     <button type="button" id="code-for-america" class="btn btn-info mr-2">code-for-america</button>
                 </div>
             </div>
