@@ -15,11 +15,30 @@
         var repo_tmpl = $("#repo-tmpl");
         var topic = $("#topic");
         var search = $("#search");
+        var reset = $("#reset");
+
+        $(".dropdown-item, #code-for-america").click(function() {
+            topic.val($(this).data("q"));
+            search.click();
+        });
+
+        search.click(function () {
+            if (topic.val() !== "") {
+                searchTopic(topic.val(), handleResponse);
+            }
+        });
+
+        reset.click(function () {
+            topic.val("");
+            repos_list.empty();
+        });
 
         var handleResponse = function (data) {
             console.log(data);
 
             repos_list.empty();
+            var len = 0;
+
             $.each(data.items, function (_, repo_data) {
                 var repo_card = $(repo_tmpl.html());
 
@@ -58,29 +77,14 @@
                     $(".lang", repo_card).text(langs.join(", "));
                 });
 
+                len++;
                 repos_list.append(repo_card);
             });
+
+            var listings = len == 1 ? "listing" : "listings";
+            listings = len + " " + listings;
+
+            repos_list.prepend("<h2>" + listings + "</h2>");
         };
-
-        search.click(function () {
-            if (topic.val() !== "") {
-                searchTopic(topic.val(), handleResponse);
-            }
-        });
-
-        $("#hack-for-la").click(function() {
-            topic.val("hack-for-la");
-            search.click();
-        });
-
-        $("#open-oakland").click(function() {
-            topic.val("open-oakland");
-            search.click();
-        });
-        
-        $("#code-for-america").click(function() {
-            topic.val("code-for-america");
-            search.click();
-        });
     });
 })(jQuery);
