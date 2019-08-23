@@ -68,18 +68,18 @@
             }
         });
 
-        $("#hack-for-la").click(function() {
-            topic.val("hack-for-la");
-            search.click();
-        });
-
         $("#code-for-boston").click(function() {
             topic.val("code-for-boston");
             search.click();
         });
 
-        $("#code-for-san-diego").click(function() {
-            topic.val("code-for-san-diego");
+        $("#code-for-sf").click(function() {
+            topic.val("code-for-sf");
+            search.click();
+        });
+
+        $("#hack-for-la").click(function() {
+            topic.val("hack-for-la");
             search.click();
         });
 
@@ -88,10 +88,14 @@
             search.click();
         });
 
-        $("#code-for-sf").click(function() {
-            topic.val("code-for-sf");
+        $("#open-san-diego").click(function() {
+            topic.val("open-san-diego");
             search.click();
         });
+
+
+
+
         
         $("#code-for-america").click(function() {
             topic.val("code-for-america");
