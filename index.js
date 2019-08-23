@@ -73,6 +73,11 @@
             search.click();
         });
 
+        $("#code-for-boston").click(function() {
+            topic.val("code-for-boston");
+            search.click();
+        });
+
         $("#open-oakland").click(function() {
             topic.val("open-oakland");
             search.click();
