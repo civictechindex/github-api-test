@@ -78,6 +78,11 @@
             search.click();
         });
 
+        $("#code-for-san-diego").click(function() {
+            topic.val("code-for-san-diego");
+            search.click();
+        });
+
         $("#open-oakland").click(function() {
             topic.val("open-oakland");
             search.click();
