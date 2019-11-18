@@ -22,6 +22,17 @@
             search.click();
         });
 
+
+        $(".dropdown-item, #code-for-all").click(function() {
+            topic.val($(this).data("q"));
+            search.click();
+        });
+
+        $(".dropdown-item, #civictechindex").click(function() {
+            topic.val($(this).data("q"));
+            search.click();
+        });
+
         search.click(function () {
             if (topic.val() !== "") {
                 searchTopic(topic.val(), handleResponse);
@@ -88,3 +99,4 @@
         };
     });
 })(jQuery);
+
